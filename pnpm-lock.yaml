@@ -12,6 +12,7 @@ specifiers:
   '@types/currency-formatter': 1.5.1
   '@types/koa': 2.13.5
   '@types/koa-bodyparser': 4.3.10
+  '@types/koa-compress': 4.0.3
   '@types/koa-logger': 3.1.2
   '@types/koa-route': 3.2.5
   '@types/koa-send': 4.1.3
@@ -29,7 +30,6 @@ specifiers:
   bcrypt: 5.1.0
   canvaskit-wasm: 0.38.0
   classnames: 2.3.2
-  core-js: 3.29.0
   cross-env: 7.0.3
   csstype: 3.1.1
   currency-formatter: 1.5.9
@@ -46,6 +46,7 @@ specifiers:
   http-graceful-shutdown: 3.1.13
   koa: 2.14.1
   koa-bodyparser: 4.3.0
+  koa-compress: 5.1.0
   koa-logger: 3.2.1
   koa-route: 3.2.0
   koa-send: 5.0.1
@@ -98,7 +99,6 @@ dependencies:
   bcrypt: 5.1.0
   canvaskit-wasm: 0.38.0
   classnames: 2.3.2
-  core-js: 3.29.0
   currency-formatter: 1.5.9
   date-time-format-timezone: 1.0.22
   formik: 2.2.9_react@18.2.0
@@ -106,6 +106,7 @@ dependencies:
   http-graceful-shutdown: 3.1.13
   koa: 2.14.1
   koa-bodyparser: 4.3.0
+  koa-compress: 5.1.0
   koa-logger: 3.2.1
   koa-route: 3.2.0
   koa-send: 5.0.1
@@ -136,6 +137,7 @@ devDependencies:
   '@types/currency-formatter': 1.5.1
   '@types/koa': 2.13.5
   '@types/koa-bodyparser': 4.3.10
+  '@types/koa-compress': 4.0.3
   '@types/koa-logger': 3.1.2
   '@types/koa-route': 3.2.5
   '@types/koa-send': 4.1.3
@@ -1600,6 +1602,13 @@ packages:
     dependencies:
       '@types/koa': 2.13.5
 
+  /@types/koa-compress/4.0.3:
+    resolution: {integrity: sha512-nJSII/tOSvYCwk3yDEBJLHd8ctkt5CQFZ0j8ZBnHZ2x0hg24z9H1i38lWXA/5z0Ix0uitMW1jov+kVbQI1aNPQ==}
+    dependencies:
+      '@types/koa': 2.13.5
+      '@types/node': 18.11.15
+    dev: true
+
   /@types/koa-logger/3.1.2:
     resolution: {integrity: sha512-sioTA1xlKYiIgryANWPRHBkG3XGbWftw9slWADUPC+qvPIY/yRLSrhvX7zkJwMrntub5dPO0GuAoyGGf0yitfQ==}
     dependencies:
@@ -2479,6 +2488,13 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
+  /compressible/2.0.18:
+    resolution: {integrity: sha512-AF3r7P5dWxL8MxyITRMlORQNaOA2IkAFaTr4k7BUumjPtRpGDTZpl0Pb1XCO6JeDCBdp126Cgs9sMxqSjgYyRg==}
+    engines: {node: '>= 0.6'}
+    dependencies:
+      mime-db: 1.52.0
+    dev: false
+
   /concat-map/0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
@@ -2520,11 +2536,6 @@ packages:
 
   /copy-to/2.0.1:
     resolution: {integrity: sha512-3DdaFaU/Zf1AnpLiFDeNCD4TOWe3Zl2RZaTzUvWiIk5ERzcCodOE20Vqq4fzCbNoHURFHT4/us/Lfq+S2zyY4w==}
-    dev: false
-
-  /core-js/3.29.0:
-    resolution: {integrity: sha512-VG23vuEisJNkGl6XQmFJd3rEG/so/CNatqeE+7uZAwTSwFeB/qaO0be8xZYUNWprJ/GIwL8aMt9cj1kvbpTZhg==}
-    requiresBuild: true
     dev: false
 
   /core-util-is/1.0.3:
@@ -4380,12 +4391,27 @@ packages:
     resolution: {integrity: sha512-8ODW8TrDuMYvXRwra/Kh7/rJo9BtOfPc6qO8eAfC80CnCvSjSl0bkRM24X6/XBBEyj0v1nRUQ1LyOy3dbqOWXw==}
     dev: false
 
+  /koa-compress/5.1.0:
+    resolution: {integrity: sha512-G3Ppo9jrUwlchp6qdoRgQNMiGZtM0TAHkxRZQ7EoVvIG8E47J4nAsMJxXHAUQ+0oc7t0MDxSdONWTFcbzX7/Bg==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      bytes: 3.1.2
+      compressible: 2.0.18
+      http-errors: 1.8.1
+      koa-is-json: 1.0.0
+      statuses: 2.0.1
+    dev: false
+
   /koa-convert/2.0.0:
     resolution: {integrity: sha512-asOvN6bFlSnxewce2e/DK3p4tltyfC4VM7ZwuTuepI7dEQVcvpyFuBcEARu1+Hxg8DIwytce2n7jrZtRlPrARA==}
     engines: {node: '>= 10'}
     dependencies:
       co: 4.6.0
       koa-compose: 4.1.0
+    dev: false
+
+  /koa-is-json/1.0.0:
+    resolution: {integrity: sha512-+97CtHAlWDx0ndt0J8y3P12EWLwTLMXIfMnYDev3wOTwH/RpBGMlfn4bDXlMEg1u73K6XRE9BbUp+5ZAYoRYWw==}
     dev: false
 
   /koa-logger/3.2.1:

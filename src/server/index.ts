@@ -4,6 +4,7 @@ import { koaMiddleware } from '@as-integrations/koa';
 import gracefulShutdown from 'http-graceful-shutdown';
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
+import compress from 'koa-compress';
 import logger from 'koa-logger';
 import route from 'koa-route';
 import send from 'koa-send';
@@ -26,6 +27,19 @@ async function init(): Promise<void> {
   const httpServer = http.createServer(app.callback());
 
   app.keys = ['cookie-key'];
+
+  app.use(
+    compress({
+      br: false,
+      deflate: {
+        flush: (await import('zlib')).default.constants.Z_SYNC_FLUSH,
+      },
+      gzip: {
+        flush: (await import('zlib')).default.constants.Z_SYNC_FLUSH,
+      },
+      threshold: 2048, // disable brotli
+    }),
+  );
   app.use(logger());
   app.use(bodyParser());
   app.use(session({}, app));
