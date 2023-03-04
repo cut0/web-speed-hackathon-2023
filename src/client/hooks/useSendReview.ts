@@ -11,7 +11,7 @@ export const useSendReview = () => {
     onQueryUpdated(observableQuery) {
       return observableQuery.refetch();
     },
-    refetchQueries: ['GetProductDetails'],
+    refetchQueries: ['GetProductDetails', 'GetProductReviews'],
   });
 
   return { sendReview };

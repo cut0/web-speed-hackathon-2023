@@ -25,7 +25,7 @@ export const ReviewSection: FC<Props> = memo(({ hasSignedIn, onSubmitReview, rev
     initialValues: {
       comment: '',
     },
-    async onSubmit(value, { resetForm }) {
+    onSubmit(value, { resetForm }) {
       onSubmitReview(value);
       resetForm();
     },
