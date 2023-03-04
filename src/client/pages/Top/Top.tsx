@@ -13,10 +13,6 @@ export const Top: FC = () => {
   const { recommendation } = useRecommendation();
   const { features } = useFeatures();
 
-  if (recommendation === undefined || features === undefined) {
-    return null;
-  }
-
   return (
     <>
       <Helmet>
@@ -24,17 +20,18 @@ export const Top: FC = () => {
       </Helmet>
       <Layout>
         <div>
-          <ProductHeroImage product={recommendation.product} title="今週のオススメ" />
+          {recommendation && <ProductHeroImage product={recommendation.product} title="今週のオススメ" />}
 
           <div className={styles.featureList()}>
-            {features.map((featureSection) => {
-              return (
-                <div key={featureSection.id} className={styles.feature()}>
-                  <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
-                  <ProductList featureSection={featureSection} />
-                </div>
-              );
-            })}
+            {features &&
+              features.map((featureSection) => {
+                return (
+                  <div key={featureSection.id} className={styles.feature()}>
+                    <h2 className={styles.featureHeading()}>{featureSection.title}</h2>
+                    <ProductList featureSection={featureSection} />
+                  </div>
+                );
+              })}
           </div>
         </div>
       </Layout>

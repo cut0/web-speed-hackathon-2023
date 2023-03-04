@@ -10,9 +10,9 @@ type Props = {
 };
 
 export const Layout: FC<Props> = ({ children }) => (
-  <>
+  <div className={styles.fullContainer()}>
     <Header />
     <main className={styles.container()}>{children}</main>
     <Footer />
-  </>
+  </div>
 );
