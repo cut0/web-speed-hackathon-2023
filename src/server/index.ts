@@ -10,6 +10,7 @@ import route from 'koa-route';
 import send from 'koa-send';
 import session from 'koa-session';
 import serve from 'koa-static';
+import zipcodeJa from 'zipcode-ja';
 
 import type { Context } from './context';
 import { dataSource } from './data_source';
@@ -61,6 +62,18 @@ async function init(): Promise<void> {
         },
       }),
     ),
+  );
+
+  app.use(
+    route.get('/code/:id', async (ctx, id) => {
+      ctx.status = 200;
+      const res = zipcodeJa[id];
+      if (!res) {
+        ctx.body = { item: undefined };
+      } else {
+        ctx.body = { item: res };
+      }
+    }),
   );
 
   app.use(

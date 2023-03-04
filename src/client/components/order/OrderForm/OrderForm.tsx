@@ -31,9 +31,8 @@ export const OrderForm: FC<Props> = ({ onSubmit }) => {
   const handleZipcodeChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
     formik.handleChange(event);
 
-    const zipcodeJa = await import('zipcode-ja');
-    const zipCode = event.target.value;
-    const address = [...(zipcodeJa.default[zipCode]?.address ?? [])];
+    const data = await (await fetch(`/code/${1760001}`)).json();
+    const address = [...(data.item.address ?? [])];
     const prefecture = address.shift();
     const city = address.join(' ');
 
