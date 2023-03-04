@@ -25,7 +25,7 @@ export const ProductDetail: FC = () => {
   const { productId } = useParams();
 
   const { product } = useProduct(Number(productId));
-  const { reviews } = useReviews(product?.id);
+  const { reviews } = useReviews(Number(productId));
   const { isAuthUser } = useAuthUser();
   const { sendReview } = useSendReview();
   const { updateCartItem } = useUpdateCartItem();
