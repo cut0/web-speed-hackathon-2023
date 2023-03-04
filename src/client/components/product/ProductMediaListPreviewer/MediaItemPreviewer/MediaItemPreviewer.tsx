@@ -17,7 +17,7 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
 
   return (
     <div className={styles.container()}>
-      {type === 'image' && <Image fill src={file.filename} />}
+      {type === 'image' && <Image fill src={file.filename.replace('.jpg', '.webp')} />}
       {type === 'video' && (
         <GetDeviceType>
           {({ deviceType }) => (
