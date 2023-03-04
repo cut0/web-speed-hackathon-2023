@@ -11,7 +11,6 @@ type Props = {
 
 export const ProductGridList: FC<Props> = ({ featureSection }) => {
   const products = featureSection.items.map((item) => item.product);
-
   return (
     <ul className={styles.cardList()}>
       {products.map((product) => {

@@ -33,9 +33,9 @@ export class GetDeviceType extends Component<Props> {
 
   private _checkIsDesktop() {
     this._windowWidth = window.innerWidth;
-    this.forceUpdate(() => {
-      this._timer = window.setImmediate(this._checkIsDesktop.bind(this));
-    });
+    // this.forceUpdate(() => {
+    //   this._timer = window.setImmediate(this._checkIsDesktop.bind(this));
+    // });
   }
 
   render() {

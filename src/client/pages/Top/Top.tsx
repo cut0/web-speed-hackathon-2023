@@ -12,7 +12,6 @@ import * as styles from './Top.styles';
 export const Top: FC = () => {
   const { recommendation } = useRecommendation();
   const { features } = useFeatures();
-
   return (
     <>
       <Helmet>

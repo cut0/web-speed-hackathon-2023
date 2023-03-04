@@ -13,6 +13,7 @@ type Props = {
 };
 
 export const ProductListSlider: FC<Props> = ({ featureSection }) => {
+  console.log('hello');
   const products = featureSection.items.map((item) => item.product);
 
   const { containerElementRef, setSlideIndex, slideIndex, visibleItemCount } = useSlider({

@@ -6,7 +6,7 @@ import * as styles from './Anchor.styles';
 type Props = { href: string; dataTestId?: string; children: ReactNode };
 
 export const Anchor: FC<Props> = ({ children, dataTestId, href }) => (
-  <Link className={styles.container()} data-testid={dataTestId ? dataTestId : undefined} to={href}>
+  <Link className={styles.container()} data-testid={dataTestId} to={href}>
     {children}
   </Link>
 );
