@@ -1,5 +1,4 @@
 import type { FC, ReactNode } from 'react';
-import { useEffect, useRef, useState } from 'react';
 
 import * as styles from './AspectRatio.styles';
 
@@ -10,22 +9,5 @@ type Props = {
 };
 
 export const AspectRatio: FC<Props> = ({ children, ratioHeight, ratioWidth }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [clientHeight, setClientHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const updateClientHeight = () => {
-      const width = containerRef.current?.getBoundingClientRect().width ?? 0;
-      const height = (width * ratioHeight) / ratioWidth;
-      setClientHeight(height);
-    };
-
-    updateClientHeight();
-  }, [ratioHeight, ratioWidth]);
-
-  return (
-    <div ref={containerRef} className={styles.container({ clientHeight })}>
-      {children}
-    </div>
-  );
+  return <div className={styles.container({ height: ratioHeight, width: ratioWidth })}>{children}</div>;
 };
