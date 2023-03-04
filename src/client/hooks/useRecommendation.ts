@@ -11,7 +11,6 @@ export const useRecommendation = () => {
   if (recommendations == null) {
     return { recommendation: undefined };
   }
-  console.log(recommendations);
 
   const recommendation = recommendations[0];
   return { recommendation };

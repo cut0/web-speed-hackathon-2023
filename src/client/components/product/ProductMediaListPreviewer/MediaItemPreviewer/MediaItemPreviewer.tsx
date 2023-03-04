@@ -12,7 +12,6 @@ type Props = {
 
 export const MediaItemPreviewer: FC<Props> = ({ file }) => {
   const type = getMediaType(file.filename);
-  console.log(file.filename);
 
   return (
     <div className={styles.container()}>
