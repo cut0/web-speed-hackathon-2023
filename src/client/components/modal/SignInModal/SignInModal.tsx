@@ -1,11 +1,11 @@
 import type { FormikErrors } from 'formik';
 import { useFormik } from 'formik';
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import * as z from 'zod';
 
 import { useSignIn } from '../../../hooks/useSignIn';
-import { useCloseModal, useIsOpenModal, useOpenModal } from '../../../store/modal';
+import { ModalContext } from '../../../store/modal';
 import { Modal } from '../../foundation/Modal';
 import { PrimaryButton } from '../../foundation/PrimaryButton';
 import { TextInput } from '../../foundation/TextInput';
@@ -26,11 +26,15 @@ export type SignInForm = {
 };
 
 export const SignInModal: FC = () => {
-  const isOpened = useIsOpenModal('SIGN_IN');
+  const [modalKey, dispatch] = useContext(ModalContext);
   const { signIn } = useSignIn();
 
-  const handleOpenModal = useOpenModal();
-  const handleCloseModal = useCloseModal();
+  const handleOpenModal = () => {
+    dispatch({ key: 'SIGN_UP', type: 'OPEN' });
+  };
+  const handleCloseModal = () => {
+    dispatch({ type: 'CLOSE' });
+  };
 
   const [submitError, setSubmitError] = useState<Error | null>(null);
   const formik = useFormik<SignInForm>({
@@ -67,14 +71,14 @@ export const SignInModal: FC = () => {
   });
 
   return (
-    <Modal onHide={handleCloseModal} show={isOpened}>
+    <Modal onHide={handleCloseModal} show={modalKey.key === 'SIGN_IN'}>
       <div className={styles.inner()}>
         <header className={styles.header()}>
           <h2 className={styles.heading()}>ログイン</h2>
           <button
             className={styles.switchToSignUpButton()}
             data-testid="modal-switch-to-signup"
-            onClick={() => handleOpenModal('SIGN_UP')}
+            onClick={() => handleOpenModal()}
           >
             会員登録
           </button>
