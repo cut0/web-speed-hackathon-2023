@@ -7,15 +7,19 @@ export const useSlider = ({ items }: { items: unknown[] }) => {
   const [_slideIndex, setSlideIndex] = useState(0);
   const slideIndex = Math.min(Math.max(0, _slideIndex), items.length - 1);
 
-  useEffect(() => {
-    const updateVisibleItemCount = () => {
-      setVisibleItemCount(() => {
-        const containerWidth = containerElementRef.current?.getBoundingClientRect().width ?? 0;
-        return Math.max(Math.floor(containerWidth / ITEM_MIN_WIDTH), 1);
-      });
-    };
+  const updateVisibleItemCount = () => {
+    setVisibleItemCount(() => {
+      const containerWidth = containerElementRef.current?.getBoundingClientRect().width ?? 0;
+      return Math.max(Math.floor(containerWidth / ITEM_MIN_WIDTH), 1);
+    });
+  };
 
+  useEffect(() => {
+    window.addEventListener('resize', updateVisibleItemCount);
     updateVisibleItemCount();
+    return () => {
+      window.removeEventListener('resize', updateVisibleItemCount);
+    };
   }, []);
 
   return {
