@@ -6,13 +6,13 @@ import { GetRecommendationsQuery } from '../graphql/queries';
 export const useRecommendation = () => {
   const recommendationsResult = useQuery<GetRecommendationsQueryResponse>(GetRecommendationsQuery);
 
-  const hour = window.Temporal.Now.plainTimeISO().hour;
   const recommendations = recommendationsResult?.data?.recommendations;
 
   if (recommendations == null) {
     return { recommendation: undefined };
   }
+  console.log(recommendations);
 
-  const recommendation = recommendations[hour % recommendations.length];
+  const recommendation = recommendations[0];
   return { recommendation };
 };

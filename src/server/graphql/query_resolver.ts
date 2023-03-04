@@ -33,7 +33,12 @@ export const queryResolver: QueryResolver = {
     });
   },
   recommendations: () => {
-    return dataSource.manager.find(Recommendation);
+    const h = new Date().getHours();
+    const index = h % 9;
+    return dataSource.manager.find(Recommendation, {
+      skip: index,
+      take: 1,
+    });
   },
   user: (_parent, args) => {
     return dataSource.manager.findOneOrFail(User, {
