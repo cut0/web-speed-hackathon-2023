@@ -16,36 +16,41 @@ type Props = {
 export const ProductMediaListPreviewer: FC<Props> = ({ product }) => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  if (product === undefined || product.media.length === 0) {
-    return null;
-  }
-
   return (
     <div className={styles.container()}>
       <AspectRatio ratioHeight={9} ratioWidth={16}>
-        <MediaItemPreviewer file={product.media[activeIndex].file} />
+        {product && <MediaItemPreviewer file={product.media[activeIndex].file} />}
+
+        {product === undefined && (
+          <>
+            <div className={styles.heroSkeleton()}></div>
+            <div className={styles.icons()}></div>
+          </>
+        )}
       </AspectRatio>
       <div className={styles.itemListWrapper()}>
         <ul className={styles.itemList()}>
-          {product.media.map((media, index) => {
-            const disabled = index === activeIndex;
+          {product &&
+            product.media.length !== 0 &&
+            product.media.map((media, index) => {
+              const disabled = index === activeIndex;
 
-            return (
-              <li key={media.id} className={styles.item()}>
-                <AspectRatio ratioHeight={1} ratioWidth={1}>
-                  <button
-                    className={classNames(styles.itemSelectButton(), {
-                      [styles.itemSelectButton__disabled()]: disabled,
-                    })}
-                    disabled={disabled}
-                    onClick={() => setActiveIndex(index)}
-                  >
-                    <MediaItem file={media.file} />
-                  </button>
-                </AspectRatio>
-              </li>
-            );
-          })}
+              return (
+                <li key={media.id} className={styles.item()}>
+                  <AspectRatio ratioHeight={1} ratioWidth={1}>
+                    <button
+                      className={classNames(styles.itemSelectButton(), {
+                        [styles.itemSelectButton__disabled()]: disabled,
+                      })}
+                      disabled={disabled}
+                      onClick={() => setActiveIndex(index)}
+                    >
+                      <MediaItem file={media.file} />
+                    </button>
+                  </AspectRatio>
+                </li>
+              );
+            })}
         </ul>
       </div>
     </div>

@@ -37,3 +37,18 @@ export const itemSelectButton__disabled = () => css`
   opacity: 0.5;
   pointer-events: none;
 `;
+
+export const heroSkeleton = () =>
+  css`
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #eaeaea;
+  `;
+
+export const icons = () =>
+  css`
+    width: 100%;
+    margin-top: 8px;
+    height: 40px;
+    background-color: #eaeaea;
+  `;

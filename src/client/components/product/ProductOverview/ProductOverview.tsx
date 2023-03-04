@@ -13,10 +13,6 @@ type Props = {
 };
 
 export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
-  if (product === undefined) {
-    return null;
-  }
-
   const renderActiveOffer = () => {
     if (activeOffer === undefined) {
       return;
@@ -42,20 +38,24 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
 
   return (
     <div className={styles.container()}>
-      {renderActiveOffer()}
-      <p className={styles.productName()}>{product.name}</p>
-      <p className={styles.productDescription()}>{product.description}</p>
+      {product && (
+        <>
+          {renderActiveOffer()}
+          <p className={styles.productName()}>{product.name}</p>
+          <p className={styles.productDescription()}>{product.description}</p>
 
-      <div className={styles.priceWrapper()}>
-        {activeOffer !== undefined ? (
-          <span className={styles.priceWithoutOffer()}>
-            {currencyFormatter.format(product.price, { code: 'JPY', precision: 0 })}
-          </span>
-        ) : null}
-        <span className={styles.price()}>
-          {currencyFormatter.format(activeOffer?.price ?? product.price, { code: 'JPY', precision: 0 })}
-        </span>
-      </div>
+          <div className={styles.priceWrapper()}>
+            {activeOffer !== undefined ? (
+              <span className={styles.priceWithoutOffer()}>
+                {currencyFormatter.format(product.price, { code: 'JPY', precision: 0 })}
+              </span>
+            ) : null}
+            <span className={styles.price()}>
+              {currencyFormatter.format(activeOffer?.price ?? product.price, { code: 'JPY', precision: 0 })}
+            </span>
+          </div>
+        </>
+      )}
     </div>
   );
 });
