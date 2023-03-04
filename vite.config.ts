@@ -1,6 +1,7 @@
 import path from 'node:path';
 
 import react from '@vitejs/plugin-react';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import topLevelAwait from 'vite-plugin-top-level-await';
@@ -18,21 +19,12 @@ const getPublicFileList = async (targetPath: string) => {
   return publicFiles;
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ mode }) => {
   const videos = await getPublicFileList(path.resolve(publicDir, 'videos'));
 
   return {
     build: {
-      assetsInlineLimit: 20480,
-      cssCodeSplit: false,
-      cssTarget: 'es6',
-      minify: false,
-      rollupOptions: {
-        output: {
-          experimentalMinChunkSize: 40960,
-        },
-      },
-      target: 'es2015',
+      minify: true,
     },
     plugins: [
       react(),
@@ -43,6 +35,13 @@ export default defineConfig(async () => {
         title: '買えるオーガニック',
         videos,
       }),
+      mode === 'analyze' &&
+        visualizer({
+          brotliSize: true,
+          filename: 'dist/stats.html',
+          gzipSize: true,
+          open: true,
+        }),
     ],
   };
 });
