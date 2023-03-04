@@ -12,30 +12,24 @@ type Props = {
 };
 
 export class GetDeviceType extends Component<Props> {
-  private _timer: number | null;
   private _windowWidth: number;
 
   constructor(props: Props) {
     super(props);
     this._windowWidth = window.innerWidth;
-    this._timer = null;
   }
 
   componentDidMount(): void {
     this._checkIsDesktop();
+    window.addEventListener('resize', this._checkIsDesktop);
   }
 
   componentWillUnmount(): void {
-    if (this._timer != null) {
-      window.clearImmediate(this._timer);
-    }
+    window.removeEventListener('resize', this._checkIsDesktop);
   }
 
   private _checkIsDesktop() {
     this._windowWidth = window.innerWidth;
-    // this.forceUpdate(() => {
-    //   this._timer = window.setImmediate(this._checkIsDesktop.bind(this));
-    // });
   }
 
   render() {

@@ -36,25 +36,17 @@ export const title = () => css`
   color: #ffffff;
   font-weight: 700;
   letter-spacing: 1px;
-`;
-
-export const title__desktop = () => css`
   font-size: 1.5rem;
-`;
-
-export const title__mobile = () => css`
-  font-size: 1.125rem;
+  @media (max-width: 1024px) {
+    font-size: 1.125rem;
+  }
 `;
 
 export const description = () => css`
   color: #ffffff;
   margin-top: 8px;
-`;
-
-export const description__desktop = () => css`
   font-size: 1rem;
-`;
-
-export const description__mobile = () => css`
-  font-size: 0.875rem;
+  @media (max-width: 1024px) {
+    font-size: 0.875rem;
+  }
 `;

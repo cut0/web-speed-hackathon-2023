@@ -6,6 +6,9 @@ export const cardList = () => css`
   overflow-x: scroll;
   padding: 8px 0;
   width: 100%;
+  @media (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 export const cardListItem = () => css`

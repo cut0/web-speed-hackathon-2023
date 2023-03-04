@@ -12,14 +12,10 @@ export const itemList = () => css`
   display: flex;
   flex-direction: column;
   gap: 16px;
-`;
-
-export const itemList__desktop = () => css`
   flex-direction: row;
-`;
-
-export const itemList__mobile = () => css`
-  flex-direction: column;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 export const item = () => css`

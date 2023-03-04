@@ -1,11 +1,3 @@
 // import 'date-time-format-timezone';
-import 'setimmediate';
+// import 'setimmediate';
 import './temporal';
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/consistent-type-definitions
-  interface Window {
-    setImmediate: <T extends unknown[]>(callback: (...args: T) => void, ...args: T) => number;
-    clearImmediate: (handle: number) => void;
-  }
-}
