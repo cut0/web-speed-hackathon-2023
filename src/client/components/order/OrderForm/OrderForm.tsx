@@ -30,8 +30,10 @@ export const OrderForm: FC<Props> = ({ onSubmit }) => {
 
   const handleZipcodeChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
     formik.handleChange(event);
-
-    const data = await (await fetch(`/code/${1760001}`)).json();
+    if (event.target.value === '') {
+      return;
+    }
+    const data = await (await fetch(`/code/${event.target.value}`)).json();
     const address = [...(data.item.address ?? [])];
     const prefecture = address.shift();
     const city = address.join(' ');
