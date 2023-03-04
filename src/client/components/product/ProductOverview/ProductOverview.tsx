@@ -18,7 +18,7 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
       return;
     }
 
-    const endTime = window.Temporal.Instant.from(activeOffer.endDate).toLocaleString('ja-jp', {
+    const endTime = new Date(activeOffer.endDate).toLocaleString('ja-jp', {
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',

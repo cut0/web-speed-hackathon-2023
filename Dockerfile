@@ -18,7 +18,7 @@ RUN pnpm build
 
 FROM node:18.13.0-bullseye-slim
 ENV TZ Asia/Tokyo
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 COPY --from=build /usr/bin/dumb-init /usr/bin/dumb-init
 COPY --from=build /usr/bin/sqlite3 /usr/bin/sqlite3

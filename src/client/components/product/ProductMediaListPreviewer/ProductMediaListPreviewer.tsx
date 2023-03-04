@@ -33,16 +33,15 @@ export const ProductMediaListPreviewer: FC<Props> = ({ product }) => {
           {product &&
             product.media.length !== 0 &&
             product.media.map((media, index) => {
-              const disabled = index === activeIndex;
-
               return (
                 <li key={media.id} className={styles.item()}>
                   <AspectRatio ratioHeight={1} ratioWidth={1}>
                     <button
-                      className={classNames(styles.itemSelectButton(), {
-                        [styles.itemSelectButton__disabled()]: disabled,
-                      })}
-                      disabled={disabled}
+                      className={classNames(
+                        styles.itemSelectButton(),
+                        index === activeIndex && styles.itemSelectButton__disabled(),
+                      )}
+                      disabled={index === activeIndex}
                       onClick={() => setActiveIndex(index)}
                     >
                       <MediaItem file={media.file} />

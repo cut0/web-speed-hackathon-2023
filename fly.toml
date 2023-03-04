@@ -1,6 +1,6 @@
-# fly.toml file generated for cut0-ws on 2023-03-04T12:25:07+09:00
+# fly.toml file generated for wshcut0 on 2023-03-05T05:43:23+09:00
 
-app = "cut0-ws"
+app = "wshcut0"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

@@ -1,4 +1,4 @@
-import './polyfill/install';
+// import './polyfill/install';
 
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
