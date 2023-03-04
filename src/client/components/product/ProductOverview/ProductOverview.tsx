@@ -56,6 +56,7 @@ export const ProductOverview: FC<Props> = memo(({ activeOffer, product }) => {
           </div>
         </>
       )}
+      {product === undefined && <div className={styles.skeleton()}></div>}
     </div>
   );
 });

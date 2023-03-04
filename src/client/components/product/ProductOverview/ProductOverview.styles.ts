@@ -39,3 +39,9 @@ export const price = () => css`
   font-size: 1.5rem;
   font-weight: 700;
 `;
+
+export const skeleton = () => css`
+  width: 100%;
+  height: 100vh;
+  background-color: #eaeaea;
+`;
