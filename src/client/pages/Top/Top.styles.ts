@@ -18,3 +18,20 @@ export const featureHeading = () => css`
   font-weight: 700;
   padding: 0 16px;
 `;
+
+export const heroSkeleton = () =>
+  css`
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #eaeaea;
+  `;
+
+export const featureSkeleton = () =>
+  css`
+    background-color: #eaeaea;
+    width: 100%;
+    height: 286px;
+    @media (max-width: 1024px) {
+      height: 282px;
+    }
+  `;

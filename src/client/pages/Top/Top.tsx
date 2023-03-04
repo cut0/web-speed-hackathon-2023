@@ -16,8 +16,12 @@ export const Top: FC = () => {
       <Layout>
         <div>
           {recommendation && <ProductHeroImage product={recommendation.product} title="今週のオススメ" />}
-
+          {recommendation === undefined && <div className={styles.heroSkeleton()}></div>}
           <div className={styles.featureList()}>
+            {features === undefined &&
+              [...Array.from({ length: 10 })].map((_, index) => (
+                <div key={index} className={styles.featureSkeleton()}></div>
+              ))}
             {features &&
               features.map((featureSection) => {
                 return (
