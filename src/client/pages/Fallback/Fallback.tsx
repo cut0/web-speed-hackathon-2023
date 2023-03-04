@@ -1,14 +1,12 @@
 import type { FC } from 'react';
-import { useEffect } from 'react';
 
 import { Layout } from '../../components/application/Layout';
 
 import * as styles from './Fallback.styles';
 
 export const Fallback: FC = () => {
-  useEffect(() => {
-    (document.querySelector('title') as any).textContent = 'エラーが発生しました';
-  }, []);
+  (document.querySelector('title') as any).textContent = 'エラーが発生しました';
+
   return (
     <>
       <Layout>
