@@ -10,8 +10,8 @@ import type {
 import {
   AuthUserFragment,
   FeatureSectionFragment,
+  ProductFragment,
   ProductReviewFragment,
-  ProductWithReviewFragment,
   RecommendationFragment,
 } from './fragments';
 
@@ -42,11 +42,11 @@ export type GetProductReviewsQueryResponse = {
 };
 
 export const GetProductDetailsQuery = gql`
-  ${ProductWithReviewFragment}
+  ${ProductFragment}
 
   query GetProductDetails($productId: Int!) {
     product(id: $productId) {
-      ...ProductWithReviewFragment
+      ...ProductFragment
     }
   }
 `;
