@@ -12,11 +12,21 @@ type Props = {
 
 export const MediaItemPreviewer: FC<Props> = ({ file }) => {
   const type = getMediaType(file.filename);
+  console.log(file.filename);
 
   return (
     <div className={styles.container()}>
       {type === 'image' && <Image fill src={file.filename.replace('.jpg', '.webp')} />}
-      {type === 'video' && <video autoPlay controls muted playsInline className={styles.video()} src={file.filename} />}
+      {type === 'video' && (
+        <video
+          autoPlay
+          controls
+          muted
+          playsInline
+          className={styles.video()}
+          src={file.filename.replace('.mp4', '.webm')}
+        />
+      )}
     </div>
   );
 };
