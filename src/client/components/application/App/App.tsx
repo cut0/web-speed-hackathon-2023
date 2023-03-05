@@ -4,13 +4,13 @@ import { ModalContextContainer } from '../../../store/modal';
 import { SignInModal } from '../../modal/SignInModal';
 import { SignUpModal } from '../../modal/SignUpModal';
 import { Providers } from '../Providers';
-import { Routes } from '../Routes';
+import { AppRoutes } from '../Routes';
 
 export const App: FC = () => (
   <Providers>
     <ModalContextContainer>
       <>
-        <Routes />
+        <AppRoutes />
         <SignInModal />
         <SignUpModal />
       </>
