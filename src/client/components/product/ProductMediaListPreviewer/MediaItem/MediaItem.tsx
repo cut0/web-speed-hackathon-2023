@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
 
 import type { MediaFileFragmentResponse } from '../../../../graphql/fragments';
 import { getMediaType } from '../../../../utils/get_media_type';
@@ -20,7 +19,13 @@ export const MediaItem: FC<Props> = ({ file }) => {
       {mediaType === 'image' && <Image fill src={file.filename.replace('.jpg', '.webp')} />}
       {mediaType === 'video' && (
         <>
-          <Image fill src={file.filename.replace('.mp4', '.webp')} />
+          <Image
+            fill
+            src={file.filename
+              .replace('/videos', '/video_thumbnail')
+              .replace('.webm', '.webp')
+              .replace('.mp4', '.webp')}
+          />
           <div className={styles.playIcon()}>
             <Icon color="#ffffff" height={16} type="FaPlay" width={16} />
           </div>

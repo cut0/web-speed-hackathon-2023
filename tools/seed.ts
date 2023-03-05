@@ -206,6 +206,7 @@ async function seedProducts({ mediaList }: { mediaList: MediaFile[] }): Promise<
           productMediaList.push(productMedia);
         }
         productMediaList[index % productMediaList.length].isThumbnail = true;
+        const thumbnail = productMediaList[index % productMediaList.length].file.filename;
         videos.slice(0, index % (videos.length + 1)).forEach((video) => {
           const productMedia = new ProductMedia();
           productMedia.file = video;
@@ -220,6 +221,7 @@ async function seedProducts({ mediaList }: { mediaList: MediaFile[] }): Promise<
         product.price = 1000 + 90 * (index % 10);
         product.media = productMediaList;
         product.description = descriptions[index % descriptions.length];
+        product.thumbnail = thumbnail;
         products.push(product);
 
         if (index % 30 === 0) {
@@ -347,6 +349,7 @@ async function seed(): Promise<void> {
   console.log('Initializing database...');
   dataSource.setOptions({ database: DATABASE_SEED_PATH });
   dataSource.driver.database = DATABASE_SEED_PATH;
+
   await dataSource.initialize();
   await dataSource.synchronize(true);
 

@@ -3,6 +3,7 @@ type Product {
   name: String!
   price: Int!
   description: String!
+  thumbnail: String!
   media: [ProductMedia!]!
   offers: [LimitedTimeOffer!]!
   reviews: [Review!]!

@@ -18,6 +18,9 @@ export class Product {
   @Column()
   description!: string;
 
+  @Column({ nullable: true })
+  thumbnail!: string;
+
   @OneToMany(() => ProductMedia, (media) => media.product)
   media!: Relation<ProductMedia[]>;
 

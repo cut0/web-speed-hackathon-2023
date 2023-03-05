@@ -63,10 +63,25 @@ export const ProductFragment = gql`
     }
   }
 `;
-export type ProductFragmentResponse = Pick<Product, 'id' | 'name' | 'price' | 'description'> & {
+export type ProductFragmentResponse = Pick<Product, 'id' | 'name' | 'price' | 'description' | 'thumbnail'> & {
   media: ProductMediaFragmentResponse[];
   offers: LimitedTimeOfferFragmentResponse[];
 };
+
+export const ProductWithoutMediaFragment = gql`
+  ${LimitedTimeOfferFragment}
+
+  fragment ProductWithoutMediaFragment on Product {
+    id
+    name
+    price
+    description
+    thumbnail
+    offers {
+      ...LimitedTimeOfferFragment
+    }
+  }
+`;
 
 export const ProfileFragment = gql`
   ${MediaFileFragment}
@@ -143,12 +158,12 @@ export type ProductWithReviewFragmentResponse = ProductFragmentResponse & {
 };
 
 export const RecommendationFragment = gql`
-  ${ProductFragment}
+  ${ProductWithoutMediaFragment}
 
   fragment RecommendationFragment on Recommendation {
     id
     product {
-      ...ProductFragment
+      ...ProductWithoutMediaFragment
     }
   }
 `;
@@ -209,12 +224,12 @@ export type AuthUserFragmentResponse = UserFragmentResponse & {
 };
 
 export const FeatureItemFragment = gql`
-  ${ProductFragment}
+  ${ProductWithoutMediaFragment}
 
   fragment FeatureItemFragment on FeatureItem {
     id
     product {
-      ...ProductFragment
+      ...ProductWithoutMediaFragment
     }
   }
 `;

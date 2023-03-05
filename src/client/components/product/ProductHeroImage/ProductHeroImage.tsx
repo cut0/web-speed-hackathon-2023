@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
-  const thumbnailFile = product.media.find((productMedia) => productMedia.isThumbnail)?.file;
+  const thumbnailFile = product.thumbnail;
 
   if (thumbnailFile === undefined) {
     return null;
@@ -25,7 +25,7 @@ export const ProductHeroImage: FC<Props> = memo(({ product, title }) => {
       <Anchor href={`/product/${product.id}`}>
         <div className={styles.container()}>
           <AspectRatio ratioHeight={9} ratioWidth={16}>
-            <img className={styles.image()} height={9} src={thumbnailFile.filename.replace('jpg', 'webp')} width={16} />
+            <img className={styles.image()} height={9} src={thumbnailFile.replace('jpg', 'webp')} width={16} />
           </AspectRatio>
 
           <div className={styles.overlay()}>
