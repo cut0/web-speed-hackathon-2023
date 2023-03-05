@@ -1,6 +1,7 @@
-import react from '@vitejs/plugin-react';
+import preact from '@preact/preset-vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig(async ({ mode }) => {
   return {
@@ -8,7 +9,24 @@ export default defineConfig(async ({ mode }) => {
       minify: true,
     },
     plugins: [
-      react(),
+      preact({
+        babel: {
+          plugins: [
+            [
+              '@emotion',
+              {
+                autoLabel: 'dev-only',
+                cssPropOptimization: true,
+                labelFormat: '[local]',
+                // sourceMap is on by default but source maps are dead code eliminated in production
+                sourceMap: false,
+              },
+            ],
+          ],
+        },
+      }),
+      viteCompression(),
+
       mode === 'analyze' &&
         visualizer({
           brotliSize: true,
@@ -17,5 +35,10 @@ export default defineConfig(async ({ mode }) => {
           open: true,
         }),
     ],
+    resolve: {
+      alias: {
+        react: 'preact/compat',
+      },
+    },
   };
 });
