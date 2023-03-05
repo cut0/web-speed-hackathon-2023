@@ -7,6 +7,7 @@ import { GetProductDetailsQuery } from '../graphql/queries';
 export const useProduct = (productId: number) => {
   const handleError = useErrorHandler();
   const productResult = useQuery<GetProductDetailsQueryResponse>(GetProductDetailsQuery, {
+    fetchPolicy: 'cache-and-network',
     onError: handleError,
     variables: {
       productId,

@@ -4,7 +4,9 @@ import type { GetFeatureSectionsQueryResponse } from '../graphql/queries';
 import { GetFeatureSectionsQuery } from '../graphql/queries';
 
 export const useFeatures = () => {
-  const featuresResult = useQuery<GetFeatureSectionsQueryResponse>(GetFeatureSectionsQuery);
+  const featuresResult = useQuery<GetFeatureSectionsQueryResponse>(GetFeatureSectionsQuery, {
+    fetchPolicy: 'cache-and-network',
+  });
 
   const features = featuresResult.data?.features;
 
