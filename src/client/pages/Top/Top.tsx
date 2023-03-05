@@ -11,7 +11,7 @@ import * as styles from './Top.styles';
 export const Top: FC = () => {
   const { recommendation } = useRecommendation();
   const { features } = useFeatures();
-
+  (document.querySelector('title') as any).textContent = '買えるオーガニック';
   return (
     <>
       <Layout>
