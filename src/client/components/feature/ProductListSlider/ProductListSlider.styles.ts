@@ -5,7 +5,7 @@ export const container = () => css`
   display: flex;
   gap: 8px;
   padding: 0 16px;
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     display: none;
   }
 `;
