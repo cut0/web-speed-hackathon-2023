@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import type { FC } from 'react';
 import { useState } from 'react';
 
@@ -37,10 +36,7 @@ export const ProductMediaListPreviewer: FC<Props> = ({ product }) => {
                 <li key={media.id} className={styles.item()}>
                   <AspectRatio ratioHeight={1} ratioWidth={1}>
                     <button
-                      className={classNames(
-                        styles.itemSelectButton(),
-                        index === activeIndex && styles.itemSelectButton__disabled(),
-                      )}
+                      className={styles.itemSelectButton()}
                       disabled={index === activeIndex}
                       onClick={() => setActiveIndex(index)}
                     >

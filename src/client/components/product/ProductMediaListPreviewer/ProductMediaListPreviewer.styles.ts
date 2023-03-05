@@ -31,11 +31,10 @@ export const itemSelectButton = () => css`
   opacity: 1;
   pointer-events: auto;
   width: 100%;
-`;
-
-export const itemSelectButton__disabled = () => css`
-  opacity: 0.5;
-  pointer-events: none;
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 `;
 
 export const heroSkeleton = () =>
